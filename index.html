@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFS Operational Model Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>GFS Operational Dashboard</h1>
+        <div class="model-info">Cycle: 2026-07-04 | Source: NCEP GFS</div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>Products</h2>
+            <nav id="menu">
+                <button class="nav-btn active" data-src="./output/gfs_500hPa.html" data-type="html">500 hPa Vorticity & Geopotential</button>
+                <button class="nav-btn" data-src="./output/gfs_250hPa.html" data-type="html">250 hPa Jet Stream</button>
+                <button class="nav-btn" data-src="./output/gfs_750hPa_RH.html" data-type="html">750 hPa Relative Humidity</button>
+<<<<<<< HEAD
+                <button class="nav-btn" data-src="./output/precipitacion.html" data-type="html">Precipitation</button>
+                <button class="nav-btn" data-src="./output/indices4.html" data-type="html">Stability Indices</button>
+=======
+                <button class="nav-btn" data-src="./output/gfs_750hPa_vertical_velo.html" data-type="html">750 hPa Vertical Velocity</button>
+                <button class="nav-btn" data-src="./output/gfs_adv_espesor3.html" data-type="html">Thickness Advection</button>
+                <button class="nav-btn" data-src="./output/gfs_indices.html" data-type="html">Stability Indices I</button>
+                <button class="nav-btn" data-src="./output/gfs_indices3.html" data-type="html">Stability Indices II</button>
+>>>>>>> origin/main
+                <button class="nav-btn" data-src="./output/gfs_pwat.html" data-type="html">Precipitable Water (PWAT)</button>
+                <button class="nav-btn" data-src="./output/gfs_thetae.html" data-type="html">Equivalent Temp (Theta-E)</button>
+                <button class="nav-btn" data-src="./output/meteograma.png" data-type="image">Meteogram (PNG)</button>
+            </nav>
+        </aside>
+
+        <!-- Main Display Area -->
+        <main class="viewer">
+            <div id="loading" class="hidden">Loading layer...</div>
+            <iframe id="html-display" src="./output/gfs_500hPa.html"></iframe>
+            <img id="image-display" src="" alt="Meteogram View" class="hidden">
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
