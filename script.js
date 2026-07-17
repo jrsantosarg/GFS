@@ -1,35 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.nav-btn');
-    const iframe = document.getElementById('html-display');
-    const img = document.getElementById('image-display');
-    const loading = document.getElementById('loading');
+document.addEventListener("DOMContentLoaded", () => {
+    const selector = document.getElementById("map-selector");
+    const iframe = document.getElementById("html-display");
+    const img = document.getElementById("image-display");
+    const loading = document.getElementById("loading");
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Update active state in UI
-            buttons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
+    selector.addEventListener("change", (e) => {
+        // Obtener la opción seleccionada
+        const selectedOption = e.target.options[e.target.selectedIndex];
+        const src = selectedOption.value;
+        const type = selectedOption.getAttribute("data-type");
 
-            const src = button.getAttribute('data-src');
-            const type = button.getAttribute('data-type');
+        // Mostrar indicador de carga
+        loading.classList.remove("hidden");
 
-            // Show loading indicator
-            loading.classList.remove('hidden');
+        if (type === "html") {
+            img.classList.add("hidden");
+            iframe.classList.remove("hidden");
+            iframe.src = src;
 
-            if (type === 'html') {
-                img.classList.add('hidden');
-                iframe.classList.remove('hidden');
-                iframe.src = src;
-            } else if (type === 'image') {
-                iframe.classList.add('hidden');
-                img.classList.remove('hidden');
-                img.src = src;
-            }
-        });
+            // Ocultar carga cuando el iframe termine de cargar
+            iframe.onload = () => {
+                loading.classList.add("hidden");
+            };
+        } else if (type === "image") {
+            iframe.classList.add("hidden");
+            img.classList.remove("hidden");
+            img.src = src;
+
+            // Ocultar carga cuando la imagen termine de cargar
+            img.onload = () => {
+                loading.classList.add("hidden");
+            };
+        }
     });
-
-    // Hide loading prompt once elements load up
-    iframe.addEventListener('load', () => loading.classList.add('hidden'));
-    img.addEventListener('load', () => loading.classList.add('hidden'));
 });
-

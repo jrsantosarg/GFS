@@ -1,44 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Viewport optimizado para mapas en móviles (evita zoom accidental en la interfaz) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>GFS Operational Model Viewer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="navbar">
-        <h1>GFS Operational Dashboard</h1>
-        <div class="model-info">Cycle: 2026-07-04 | Source: NCEP GFS</div>
+        <div class="header-info">
+            <h1>GFS Dashboard</h1>
+            <span class="model-info">Ciclo: 2026-07-04</span>
+        </div>
+        
+        <!-- Nuevo Selector de Campo -->
+        <div class="selector-container">
+            <select id="map-selector">
+                <option value="./output/gfs_500hPa.html" data-type="html">500 hPa Vorticity & Geopotential</option>
+                <option value="./output/gfs_250hPa.html" data-type="html">250 hPa Jet Stream</option>
+                <option value="./output/gfs_750hPa_RH.html" data-type="html">750 hPa Relative Humidity</option>
+                <option value="./output/precipitacion.html" data-type="html">Precipitation</option>
+                <option value="./output/indices4.html" data-type="html">Stability Indices</option>
+                <option value="./output/espesor3.html" data-type="html">Thickness Advection</option>
+                <option value="./output/gfs_indices.html" data-type="html">Stability Indices I</option>
+                <option value="./output/gfs_pwat.html" data-type="html">Precipitable Water (PWAT)</option>
+                <option value="./output/gfs_thetae.html" data-type="html">Equivalent Temp (Theta-E)</option>
+                <option value="./output/meteograma.png" data-type="image">Meteogram (PNG)</option>
+            </select>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <h2>Products</h2>
-            <nav id="menu">
-                <button class="nav-btn active" data-src="./output/gfs_500hPa.html" data-type="html">500 hPa Vorticity & Geopotential</button>
-                <button class="nav-btn" data-src="./output/gfs_250hPa.html" data-type="html">250 hPa Jet Stream</button>
-                <button class="nav-btn" data-src="./output/gfs_750hPa_RH.html" data-type="html">750 hPa Relative Humidity</button>
-                <button class="nav-btn" data-src="./output/precipitacion.html" data-type="html">Precipitation</button>
-                <button class="nav-btn" data-src="./output/indices4.html" data-type="html">Stability Indices</button>
-                <button class="nav-btn" data-src="./output/espesor3.html" data-type="html">Thickness Advection</button>
-                <button class="nav-btn" data-src="./output/gfs_indices.html" data-type="html">Stability Indices I</button>
-                <button class="nav-btn" data-src="./output/gfs_pwat.html" data-type="html">Precipitable Water (PWAT)</button>
-                <button class="nav-btn" data-src="./output/gfs_thetae.html" data-type="html">Equivalent Temp (Theta-E)</button>
-                <button class="nav-btn" data-src="./output/meteograma.png" data-type="image">Meteogram (PNG)</button>
-            </nav>
-        </aside>
-
-        <!-- Main Display Area -->
-        <main class="viewer">
-            <div id="loading" class="hidden">Loading layer...</div>
-            <iframe id="html-display" src="./output/gfs_500hPa.html"></iframe>
-            <img id="image-display" src="" alt="Meteogram View" class="hidden">
-        </main>
-    </div>
+    <!-- Área de Visualización (Ocupará todo el espacio restante) -->
+    <main class="viewer">
+        <div id="loading" class="hidden">Cargando...</div>
+        <iframe id="html-display" src="./output/gfs_500hPa.html"></iframe>
+        <img id="image-display" src="" alt="Meteograma" class="hidden">
+    </main>
 
     <script src="script.js"></script>
 </body>
 </html>
-
